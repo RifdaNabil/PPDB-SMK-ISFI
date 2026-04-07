@@ -1,0 +1,105 @@
+/* LAYOUT */
+.layout {
+    display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    background: #213C51;
+    min-height: 100vh;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar .nav-link {
+    color: #ccc;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+    background: #2e536d;
+    color: white;
+}
+
+/* CONTENT */
+.content {
+    margin-left: 240px;
+    padding: 30px;
+    width: 100%;
+    background: #EEEEEE;
+    min-height: 100vh;
+}
+
+/* HERO */
+.hero-card {
+    background: linear-gradient(135deg, #213C51, #2e536d);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* CARD */
+.card {
+    border: none;
+    border-radius: 14px;
+}
+
+/* PROGRESS */
+.progress-wrapper {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.progress-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #ddd;
+}
+
+.progress-step {
+    text-align: center;
+    position: relative;
+}
+
+.progress-step .icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 8px;
+}
+
+.progress-step.active .icon {
+    background: linear-gradient(135deg, #213C51, #2e536d);
+    color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+    .sidebar {
+        left: -240px;
+        transition: 0.3s;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}

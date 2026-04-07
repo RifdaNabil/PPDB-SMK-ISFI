@@ -1,0 +1,34 @@
+/* NAVBAR SECTION */
+.navbar {
+    background-color: #213C51;
+}
+
+/* HERO SECTION */
+#hero {
+    background: linear-gradient(135deg, #213C51, #2e536d);
+    color: #EEEEEE;
+}
+
+
+/* TOMBOL LOGIN DAN REGISTER */
+/* tombol register */
+.btn-brand-me {
+    background-color: #FFB347;
+    color: #EEEE;
+    border: none;
+}
+.btn-brand-me:hover {
+    background-color: #e28f11;
+    color: #EEEE;
+}
+/* tombol login */
+.btn-outline-brand {
+    border: 2px solid #FFB347;
+    color: #EEEE;
+}
+.btn-outline-brand:hover {
+    background-color: #FFB347;
+    color: #EEEE;
+}
+
+
