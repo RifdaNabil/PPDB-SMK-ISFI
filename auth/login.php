@@ -1,36 +1,43 @@
 <?php
 session_start();
+include_once '../config/database.php';
+
 // CEK KALAU SUDAH LOGIN
 if (isset($_SESSION['user_id'])) {
-    header("Location: ../siswa/dashboard_siswa.php");
+
+    if ($_SESSION['user_role'] == 'admin') {
+        header("Location: ../admin/dashboard_admin.php");
+    } else {
+        header("Location: ../siswa/dashboard_siswa.php");
+    }
+
     exit();
 }
 
-//KONEKSI DATABASE
-include_once '../config/database.php';
+// AMBIL DATA DARI FORM
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
 
-// INISIALISASI ERROR DAN SUCCESS MESSAGE
+// INISIALISASI MESSAGE
 $message = "";
 $message_class = "";
-$email = '';
 
 // PROSES LOGIN
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // AMBIL DATA DARI FORM
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'];
-
-    // VALIDASI DATA
+    // VALIDASI INPUT
     if (empty($email) || empty($password)) {
         $message = "Email dan Password harus diisi!";
         $message_class = "alert-danger";
+
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $message = "Format email tidak valid!";
         $message_class = "alert-danger";
+
     } else {
-        // CHECK EMAIL DI DATABASE
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email=? AND role='siswa'");
+
+        // 🔥 AMBIL USER (TANPA FILTER ROLE)
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $check = $stmt->get_result();
@@ -39,31 +46,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $user = $check->fetch_assoc();
 
-            // VERIFIKASI PASSWORD
-            if (password_verify($password, $user['password'])) {
+            // ===============================
+            // 🔥 LOGIN ADMIN (PLAIN PASSWORD)
+            // ===============================
+            if ($user['role'] == 'admin') {
 
-                // SIMPAN SESSION
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['nama'];
-                $_SESSION['user_email'] = $user['email'];
-                $_SESSION['user_role'] = $user['role'];
+                if ($password == $user['password']) {
 
-                // REDIRECT KE DASHBOARD SISWA
-                $message = "Login Berhasil! Mengalihkan Ke Dashboard Siswa...";
-                $message_class = "alert-success";
-                header("Location: ../siswa/dashboard_siswa.php");
-                exit();
-            } else {
-                $message = "Password salah!";
-                $message_class = "alert-danger";
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['user_name'] = $user['nama'];
+                    $_SESSION['user_email'] = $user['email'];
+                    $_SESSION['user_role'] = $user['role'];
+
+                    header("Location: ../admin/dashboard_admin.php");
+                    exit();
+
+                } else {
+                    $message = "Password admin salah!";
+                    $message_class = "alert-danger";
+                }
+
+            } 
+            // ===============================
+            // 🔥 LOGIN SISWA (HASH PASSWORD)
+            // ===============================
+            else {
+
+                if (password_verify($password, $user['password'])) {
+
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['user_name'] = $user['nama'];
+                    $_SESSION['user_email'] = $user['email'];
+                    $_SESSION['user_role'] = $user['role'];
+
+                    header("Location: ../siswa/dashboard_siswa.php");
+                    exit();
+
+                } else {
+                    $message = "Password salah!";
+                    $message_class = "alert-danger";
+                }
+
             }
+
         } else {
             $message = "Email tidak ditemukan!";
             $message_class = "alert-danger";
         }
     }
 }
-
 ?>
 
 <?php

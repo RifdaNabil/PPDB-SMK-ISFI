@@ -2,7 +2,7 @@
 session_start();
 include_once '../config/database.php';
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'siswa') {
     header("Location: ../auth/login.php");
     exit();
 }

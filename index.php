@@ -3,51 +3,65 @@ $css = "assets/css/index.css";
 include 'includes/header.php';
 ?>
 
-<!-- NAVBAR -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
 <nav class="navbar navbar-dark shadow-sm">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-      <img src="assets/img/logo-isfi.png" alt="logo-isfi" height="50">
-      <span class="fw-semibold text-light">SMKS ISFI BANJARMASIN</span>
+  <div class="container d-flex justify-content-between">
+
+    <a class="navbar-brand d-flex align-items-center gap-2">
+      <img src="assets/img/logo-isfi.png" height="50">
+      <span class="text-white fw-semibold">SMKS ISFI</span>
     </a>
+
+    <div>
+      <a href="auth/login.php" class="btn btn-outline-light btn-sm me-2">
+        <i class="bi bi-box-arrow-in-right"></i> Masuk
+      </a>
+      <a href="auth/register.php" class="btn btn-light btn-sm">
+        <i class="bi bi-person-plus"></i> Daftar Sekarang
+      </a>
+    </div>
+
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero" class="vh-100 d-flex align-items-center">
-  <div class="container">
-    <div class="row align-items-center">
+<div class="container">
 
-      <!-- LEFT CONTENT -->
-      <div class="col-md-6 text-white">
-        <h1 class="fw-bold mb-3">
-          Wujudkan Masa Depanmu Bersama SMKS ISFI
-        </h1>
+<div class="row align-items-center">
 
-        <p class="fs-5 mb-4">
-          Daftar sekarang dan jadilah bagian dari sekolah yang
-          inovatif, kreatif, dan siap menghadapi dunia kerja.
-        </p>
+<div class="col-md-6 text-white" data-aos="fade-right">
 
-        <div class="d-flex gap-3">
-          <a href="auth/register.php" class="btn btn-brand-me btn-lg px-4">
-            Daftar Sekarang
-          </a>
-          <a href="auth/login.php" class="btn btn-outline-brand btn-lg px-4">
-            Masuk
-          </a>
-        </div>
-      </div>
+<h1 class="fw-bold mb-3">
+Wujudkan Masa Depanmu Bersama SMKS ISFI
+</h1>
 
-      <!-- RIGHT ILLUSTRATION -->
-      <div class="col-md-6 text-center mt-4 mt-md-0">
-        <img src="assets/img/hero.png"
-          alt="Ilustrasi siswa"
-          class="img-fluid">
-      </div>
+<p class="fs-5 mb-4">
+Portal resmi penerimaan peserta didik baru.
+</p>
 
-    </div>
-  </div>
+<a href="auth/register.php" class="btn btn-brand-me me-2">
+Daftar Sekarang Juga
+</a>
+
+<a href="auth/login.php" class="btn btn-outline-brand">
+Masuk
+</a>
+
+</div>
+
+<div class="col-md-6 text-center" data-aos="fade-left">
+<img src="assets/img/hero.png" class="img-fluid">
+</div>
+
+</div>
+
+</div>
 </section>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 800 });
+</script>
 
 <?php include 'includes/footer.php'; ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 07, 2026 at 06:21 PM
+-- Generation Time: Apr 08, 2026 at 05:04 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.23
 
@@ -41,7 +41,8 @@ CREATE TABLE `berkas` (
 --
 
 INSERT INTO `berkas` (`id`, `pendaftaran_id`, `pas_foto`, `created_at`, `ijazah`, `nilai`) VALUES
-(2, 1, '1775584064_foto.jpg', '2026-04-07 17:01:03', NULL, NULL);
+(2, 1, '1775584064_foto.jpg', '2026-04-07 17:01:03', NULL, NULL),
+(3, 3, '1775614656_foto.jpg', '2026-04-08 02:17:37', '1775614657_ijazah.jpg', '1775614657_nilai.pdf');
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,9 @@ CREATE TABLE `pendaftaran` (
 --
 
 INSERT INTO `pendaftaran` (`id`, `user_id`, `nama`, `jk`, `asal_sekolah`, `jurusan`, `status`, `created_at`, `tempat_lahir`, `tanggal_lahir`, `agama`, `no_hp`, `alamat`, `ayah`, `hp_ayah`, `ibu`, `hp_ibu`, `motivasi`) VALUES
-(1, 7, 'Rifda Nabil Ramadani', 'P', 'SMP Muhamadiyah 3 Balikpapan', 'RPL', 'menunggu', '2026-04-07 15:19:28', 'Penajam', '2007-10-03', 'Islam', '082154975940', 'SABITAH NUR TRAVEL', 'Jumadil', '081325025311', 'Erna Fitriani', '082154975949', 'SEBAB AKU CINTA ISFI');
+(1, 7, 'Rifda Nabil Ramadani', 'P', 'SMP Muhamadiyah 3 Balikpapan', 'RPL', 'menunggu', '2026-04-07 15:19:28', 'Penajam', '2007-10-03', 'Islam', '082154975940', 'SABITAH NUR TRAVEL', 'Jumadil', '081325025311', 'Erna Fitriani', '082154975949', 'SEBAB AKU CINTA ISFI'),
+(2, 8, 'Rifda Nabil Ramadani', 'L', 'SMP Muhamadiyah 3 Balikpapan', 'RPL', 'menunggu', '2026-04-08 02:08:02', 'Penajam', '2007-10-03', 'Islam', '082154975940', 'SABITAH NUR TRAVEL', 'Jumadil', '081325025311', 'Erna Fitriani', '082154975940', 'happy'),
+(3, 9, 'J.K.Rowling', 'P', 'SMP Muhamadiyah 3 Balikpapan', 'RPL', 'menunggu', '2026-04-08 02:16:56', 'KOPO', '2010-10-10', 'ISLAM', '082154975940', 'Jalan Flamboyan V No.5B, RT.042/RW.001, Sungai Miai, Kec. Banjarmasin Utara, Kota Banjarmasin, Kalimantan Selatan 70123', 'Jumadil', '081325025311', 'Erna Fitriani', '082154975940', 'SENANG');
 
 -- --------------------------------------------------------
 
@@ -98,7 +101,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`, `created_at`) VALUES
 (7, 'Rifda Nabil Ramadani', 'rifdanabilr03@gmail.com', '$2y$10$Nm4Dtis6oaqjC8gg6wNqeu2TtjnIVU5GazPA0YVIdZQd1qKfHpzqy', 'siswa', '2026-04-05 16:00:48'),
-(8, 'dappi', 'dappi@admin.com', '123', 'admin', '2026-04-07 17:59:04');
+(8, 'dappi', 'dappi@admin.com', '123', 'admin', '2026-04-07 17:59:04'),
+(9, 'J.K.Rowling', 'andirifki@yahoo.com', '$2y$10$5Ol5kz7Y42ATyOmegW0JVOzNBssAOi.1G8ZfDyNv/HaDHXXUW.Dda', 'siswa', '2026-04-08 02:16:01');
 
 --
 -- Indexes for dumped tables
@@ -133,19 +137,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `berkas`
 --
 ALTER TABLE `berkas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

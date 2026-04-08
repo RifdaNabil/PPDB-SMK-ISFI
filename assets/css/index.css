@@ -5,8 +5,32 @@
 
 /* HERO SECTION */
 #hero {
-    background: linear-gradient(135deg, #213C51, #2e536d);
-    color: #EEEEEE;
+  position: relative;
+  background: linear-gradient(135deg, #2C4A5E, #3A6D8C, #6FA3C8);
+  color: white;
+  overflow: hidden;
+}
+
+#hero::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  top: -80px;
+  left: -80px;
+}
+
+#hero::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  bottom: -80px;
+  right: -80px;
 }
 
 

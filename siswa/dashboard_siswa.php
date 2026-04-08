@@ -2,7 +2,7 @@
 session_start();
 include_once '../config/database.php';
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'siswa') {
     header("Location: ../auth/login.php");
     exit();
 }
@@ -73,11 +73,6 @@ include '../includes/header.php';
                     </a>
                 <?php endif; ?>
 
-                <li class="nav-item mb-2">
-                    <a href="pengumuman.php" class="nav-link">
-                        <i class="bi bi-megaphone me-2"></i> Pengumuman
-                    </a>
-                </li>
             </ul>
         </div>
 
@@ -106,6 +101,46 @@ include '../includes/header.php';
             </div>
         </div>
 
+        <!-- PENGUMUMAN -->
+        <div class="card p-4 mb-4">
+
+            <h5 class="mb-3">
+                <i class="bi bi-megaphone"></i> Pengumuman
+            </h5>
+
+            <?php if (!$data): ?>
+
+                <div class="alert alert-secondary">
+                    Silakan isi data terlebih dahulu.
+                </div>
+
+            <?php else: ?>
+
+                <?php if ($status == 'menunggu'): ?>
+                    <div class="alert alert-warning">
+                        Data kamu sedang dalam proses verifikasi oleh admin.
+                    </div>
+
+                <?php elseif ($status == 'lulus'): ?>
+                    <div class="alert alert-success">
+                        <b>Selamat! Kamu dinyatakan LULUS.</b>
+                        <br>
+                        Silakan melakukan daftar ulang ke sekolah.
+                    </div>
+
+                <?php elseif ($status == 'tidak lulus'): ?>
+                    <div class="alert alert-danger">
+                        <b>Mohon maaf, kamu belum lulus.</b>
+                        <br>
+                        <?= $data['alasan'] ?? 'Tetap semangat dan coba lagi.' ?>
+                    </div>
+
+                <?php endif; ?>
+
+            <?php endif; ?>
+
+        </div>
+
         <!-- INFO -->
         <div class="card info-card p-3 mb-4">
 
@@ -120,7 +155,7 @@ include '../includes/header.php';
                 </div>
 
             <?php endif; ?>
-            
+
             <?php if (!$data && !$berkas): ?>
                 <div class="alert alert-warning">
                     Kamu belum mengisi Data Diri dan Upload Berkas.
@@ -204,17 +239,33 @@ include '../includes/header.php';
                     <a href="upload_berkas.php" class="btn btn-success px-4">
                         Upload Berkas
                     </a>
-                <?php else: ?>
-                    <a href="edit_data.php" class="btn btn-warning px-4 me-2">
-                        Edit Data
-                    </a>
 
-                    <a href="edit_berkas.php" class="btn btn-success px-4">
-                        Edit Berkas
-                    </a>
+                <?php else: ?>
+
+                    <?php if ($status == 'menunggu'): ?>
+
+                        <a href="edit_data.php" class="btn btn-warning px-4 me-2">
+                            Edit Data
+                        </a>
+
+                        <a href="edit_berkas.php" class="btn btn-success px-4">
+                            Edit Berkas
+                        </a>
+
+                    <?php else: ?>
+
+                        <button class="btn btn-secondary px-4 me-2" disabled>
+                            <i class="bi bi-lock"></i> Edit Data
+                        </button>
+
+                        <button class="btn btn-secondary px-4" disabled>
+                            <i class="bi bi-lock"></i> Edit Berkas
+                        </button>
+
+                    <?php endif; ?>
 
                 <?php endif; ?>
-                    
+
             </div>
 
         </div>
